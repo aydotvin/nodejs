@@ -39,5 +39,3 @@ module.exports.subtract = (a, b) => {
 `const { add: addFn, subtract, square } = require("./math.js");`
 
 ---
-
-## module.exports vs exports
