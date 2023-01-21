@@ -1,6 +1,6 @@
 // const fs = require("node:fs");
 
-//	-----fs callback-----
+//	-----FS CALLBACK-----
 // //	Synchronous read
 // const fileContent = fs.readFileSync("./file.txt");	//	returns content as a buffer.
 // const fileContent = fs.readFileSync("./file.txt", "utf-8"); //	returns content as a text.
@@ -29,8 +29,8 @@
 //   });
 // }, 2000);
 
-//	-----fs promise-----
-const fs = require("node:fs/promises");
+// //	-----FS PROMISE-----
+// const fs = require("node:fs/promises");
 
 // fs.readFile("./file.txt", "utf-8")
 //   .then((fileContent) => {
@@ -40,14 +40,28 @@ const fs = require("node:fs/promises");
 //     console.log(error);
 //   });
 
-async function readFile() {
-  try {
-    const fileContent = await fs.readFile("./file.txt", "utf-8");
-    console.log(fileContent);
-  } catch (error) {
-    console.log(error);
-  }
-}
-readFile();
+// async function readFile() {
+//   try {
+//     const fileContent = await fs.readFile("./file.txt", "utf-8");
+//     console.log(fileContent);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// readFile();
+
+//	-----FS STREAM-----
+const fs = require("node:fs");
+
+const readableStream = fs.createReadStream("./file.txt", {
+  encoding: "utf-8",
+	highWaterMark: 2
+});
+const writeableStream = fs.createWriteStream("./file2.txt");
+
+readableStream.on("data", (fileContent) => {
+  console.log(fileContent);
+  writeableStream.write(fileContent);
+});
 
 console.log("last line");
