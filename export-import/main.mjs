@@ -1,6 +1,6 @@
-// import add from "./math-esm.mjs";
-// import math from "./math-esm.mjs";
-import math, { square } from "./math-esm.mjs";
+// import add from "./mathEsm.mjs";
+// import math from "./mathEsm.mjs";
+import math, { square } from "./mathEsm.mjs";
 const { add, subtract } = math;
 
 // console.log(add(2, 3));
