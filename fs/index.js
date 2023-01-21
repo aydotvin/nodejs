@@ -51,17 +51,34 @@
 // readFile();
 
 //	-----FS STREAM-----
+// const fs = require("node:fs");
+
+// const readableStream = fs.createReadStream("./file.txt", {
+//   encoding: "utf-8",
+//   highWaterMark: 2,
+// });
+// const writeableStream = fs.createWriteStream("./file2.txt");
+
+// readableStream.on("data", (fileContent) => {
+//   console.log(fileContent);
+//   writeableStream.write(fileContent);
+// });
+
+//	-----FS PIPE-----
 const fs = require("node:fs");
+const zlib = require("node:zlib");
+
+const gzip = zlib.createGzip();
 
 const readableStream = fs.createReadStream("./file.txt", {
   encoding: "utf-8",
-	highWaterMark: 2
+  highWaterMark: 2,
 });
+
+// readableStream.pipe(gzip).pipe(fs.WriteStream("./file2.txt.gz"));
+
 const writeableStream = fs.createWriteStream("./file2.txt");
 
-readableStream.on("data", (fileContent) => {
-  console.log(fileContent);
-  writeableStream.write(fileContent);
-});
+readableStream.pipe(writeableStream);
 
 console.log("last line");

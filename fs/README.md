@@ -42,3 +42,12 @@ const readableStream = fs.createReadStream("file-path", {...options});
 
 - `encoding: "utf-8"` - encoding format.
 - `highWaterMark: 2` - buffer/chunk size in bytes.
+
+---
+
+## Pipe:
+
+- This connects the readable stream to the writable stream and copies the content.
+- This returns the destination stream which enables chaining. The destination stream has to be readable, duplex or transform stream.
+
+### zlib:
