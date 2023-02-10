@@ -6,7 +6,7 @@
 //   return a - b;
 // };
 
-// // module.exports = add;
+// // module.exports = add;	//	Default export
 // module.exports = { add, subtract };
 
 module.exports.add = (a, b) => {
